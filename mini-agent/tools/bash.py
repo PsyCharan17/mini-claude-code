@@ -71,3 +71,21 @@ class BashTool(BaseTool):
                 content=f"Exception trying to execute command: {str(e)}",
                 is_error=True
             )
+
+    def get_prompt(self) -> str:
+        return (
+            "Execute a shell command on the host system and return its stdout/stderr.\n"
+            "\n"
+            "Use this tool to:\n"
+            "  - Navigate or inspect the filesystem (ls, cd, find, tree)\n"
+            "  - Read, create, or modify files (cat, cp, mv, rm, touch, mkdir)\n"
+            "  - Run scripts, tests, or build commands (pytest, npm test, make)\n"
+            "  - Check system state (ps, df, env, git status/log/diff)\n"
+            "\n"
+            "Guidelines:\n"
+            "  - Prefer small, targeted commands over large pipelines\n"
+            "  - When possible, use absolute paths or verify the CWD first\n"
+            "  - Avoid interactive commands (e.g. vim, top, git rebase -i)\n"
+            "  - If output is large, redirect to a file and read it back with read_file\n"
+            "  - The command has a 30-second hard timeout\n"
+        )

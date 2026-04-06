@@ -33,6 +33,6 @@ class FileWriteTool(BaseTool):
             os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
             with open(path, "w", encoding="utf-8") as f:
                 f.write(content)
-            return ToolResult(content=f"Successfully wrote {len(content)} bytes to {path}")
+            return ToolResult(content=f"Successfully wrote {len(content)} bytes to {path}",is_error=False)
         except Exception as e:
             return ToolResult(content=f"Error writing file: {e}", is_error=True)

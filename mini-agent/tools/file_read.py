@@ -53,3 +53,21 @@ class FileReadTool(BaseTool):
 
         content = f"Lines {actual_start}-{actual_end} of {path}:\n{''.join(lines)}"
         return ToolResult(content=content.strip(), is_error=False)
+
+    def get_prompt(self) -> str:
+        return (
+            "Read the contents of a text file and return its lines.\n"
+            "\n"
+            "Use this tool to:\n"
+            "  - Inspect source code, configs, scripts, or logs\n"
+            "  - Verify the contents of a file after modifying it\n"
+            "  - Understand existing code before making changes\n"
+            "\n"
+            "Guidelines:\n"
+            "  - Always provide an absolute or project-root-relative path\n"
+            "  - Use start_line/end_line to read small sections of large files\n"
+            "    instead of loading the entire file\n"
+            "  - If you need the full file, omit start_line/end_line\n"
+            "  - This tool reads as UTF-8 text; binary files will return an error\n"
+            "  - For directory listings, use list_dir or bash instead\n"
+        )
