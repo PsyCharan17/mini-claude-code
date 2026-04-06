@@ -37,3 +37,9 @@ class BaseTool(ABC):
     def definition(self) -> dict:
         """Convenience method to format this tool for the OpenAI API."""
         return make_tool(self.name(), self.description(), self.parameters())
+
+    def get_prompt(self) -> str:                                                                                                                 
+      """Multi-line description of how the model should use this tool."""                                                                      
+      return self.description()  
+
+        
